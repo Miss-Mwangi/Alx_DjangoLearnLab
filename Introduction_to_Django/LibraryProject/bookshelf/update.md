@@ -1,9 +1,7 @@
 # Updating a Book
 
-To update a book’s author, use:
+# To update a book’s author, use:
+from bookshelf.models import Book
 
-```python
-book = Book.objects.filter(title="1984").first()
-book.author = "G. Orwell"
+book.title = "Nineteen Eighty-Four"
 book.save()
-print(f"Updated: {book.title}, {book.author}, {book.publication_year}")
