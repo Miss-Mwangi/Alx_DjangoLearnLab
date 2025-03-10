@@ -6,7 +6,7 @@ from .models import Library
 # Create your views here.
 def list_books(request):
     books = Book.objects.all()
-    return render(request, "list_books.html", {"books": books})
+    return render(request, "relationship_app/list_books.html", {"books": books})
 
 # Class-Based View to show details of a specific Library
 class LibraryDetailView(DetailView):
