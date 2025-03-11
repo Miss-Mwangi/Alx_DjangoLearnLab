@@ -53,10 +53,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'LibraryProject.urls'
 
+import os 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "relationship_app/templates"],
+        'DIRS': [os.path.join(BASE_DIR / "relationship_app/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
