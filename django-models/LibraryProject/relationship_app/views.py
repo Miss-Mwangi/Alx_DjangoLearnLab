@@ -5,6 +5,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .models import Book
 from django.views.generic.detail import DetailView
 from .models import Library
+from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
 
 # Create your views here.
 def list_books(request):
@@ -43,3 +45,24 @@ class LibraryDetailView(DetailView):
     model = Library
     template_name = "relationship_app/library_detail.html" 
     context_object_name = "library"
+
+def is_admin(user):
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
+
+def is_librarian(user):
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
+
+def is_member(user):
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
+
+@user_passes_test(is_admin)
+def admin_view(request):
+    return HttpResponse("Welcome to the Admin Dashboard.")
+
+@user_passes_test(is_librarian)
+def librarian_view(request):
+    return HttpResponse("Welcome to the Librarian Panel.")
+
+@user_passes_test(is_member)
+def member_view(request):
+    return HttpResponse("Welcome to the Member Section.")
