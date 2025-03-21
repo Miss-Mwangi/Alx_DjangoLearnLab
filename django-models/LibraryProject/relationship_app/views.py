@@ -55,7 +55,7 @@ def is_librarian(user):
 def is_member(user):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
 
-@user_passes_test(is_admin)
+@user_passes_test(is_admin, login_url='/login/')
 def admin_view(request):
     return HttpResponse("Welcome to the Admin Dashboard.")
 
