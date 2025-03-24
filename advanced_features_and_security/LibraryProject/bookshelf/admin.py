@@ -13,7 +13,7 @@ class CustomUserAdmin(UserAdmin):
         ("Additional Info", {"fields": ("date_of_birth", "profile_photo", "role")}),
     )
 
-admin.site.register(CustomerUser, CustomUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'publication_year')
