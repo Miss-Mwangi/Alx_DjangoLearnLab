@@ -7,7 +7,18 @@ from django.http import HttpResponse
 # Create your views here.
 def book_list(request):
     books = Book.objects.all()
-    reurn render(request, 'bookshelf/book_list.html', {'books': books})
+    return render(request, 'bookshelf/book_list.html', {'books': books})
+
+def example_form_view(request):
+    if request.method == "POST":
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('book_list')
+    else:
+        form = ExampleForm()
+    
+    return render(request, 'bookshelf/form_example.html', {'form': form})
 
 @permission_required('bookshelf.can_create', raise_exception=True)
 def book_create(request):
