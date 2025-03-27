@@ -7,11 +7,7 @@ from django.http import HttpResponse
 # Create your views here.
 def book_list(request):
     books = Book.objects.all()
-    book_data = "<h1>Book List</h1><ul>"
-    for book in books:
-        book_data += f"<li>{book.title} by {book.author} ({book.publication_year})</li>"
-    book_data += "</ul>"
-    return HttpResponse(book_data)
+    reurn render(request, 'bookshelf/book_list.html', {'books': books})
 
 @permission_required('bookshelf.can_create', raise_exception=True)
 def book_create(request):
