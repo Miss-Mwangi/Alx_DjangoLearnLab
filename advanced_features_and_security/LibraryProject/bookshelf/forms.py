@@ -6,7 +6,5 @@ class BookForm(forms.ModelForm):
         model = Book
         fields = '__all__'
 
-class ExampleForm(forms.ModelForm):
-    class Meta:
-        model = Book
-        fields = ['title', 'author', 'publication_year']
+class ExampleForm(forms.Form):
+    field_name = forms.CharField(max_length=100)
