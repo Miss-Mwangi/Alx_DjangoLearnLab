@@ -76,7 +76,10 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True 
+    CSRF_COOKIE_SECURE = True
+
+# Ensure Django recognizes HTTPS when behind a reverse proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') 
 
 ROOT_URLCONF = 'LibraryProject.urls'
 
